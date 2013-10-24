@@ -1,10 +1,9 @@
 # CYCLONEPHYSICS LIB
-CXXFLAGS=-O2 -I./include -fPIC
+CXXFLAGS=-O2 -I./include -fPIC -std=c++0x
 CYCLONEOBJS=src/body.o src/collide_coarse.o src/collide_fine.o src/contacts.o src/core.o src/fgen.o src/joints.o src/particle.o src/pcontacts.o src/pfgen.o src/plinks.o src/pworld.o src/random.o src/world.o
 
 # DEMO FILES
 SOURCES=body
-LDFLAGS=-std=c++0x
 DEMO_CPP=./src/demos/app.cpp ./src/demos/timing.cpp ./src/demos/main.cpp
 
 UNAME := $(shell uname)
@@ -23,12 +22,12 @@ endif
 CYCLONELIB=libcyclone.$(LIBSUFFIX)
 DEMOS=ballistic bigballistic blob bridge explosion fireworks flightsim fracture platform ragdoll sailboat
 
-all:	$(CYCLONELIB) $(DEMOS)
+all:	$(DEMOS) $(CYCLONELIB)
 
 $(CYCLONELIB): $(CYCLONEOBJS)
 	$(CXX) $(CYCLONEOBJS) $(LIBFLAGS) -o lib/$(CYCLONELIB)
 
-$(DEMOS): 
+$(DEMOS): $(CYCLONELIB)
 	$(CXX) -o ./bin/$@ $(DEMO_CPP) ./lib/$(CYCLONELIB) ./src/demos/$@/$@.cpp $(CXXFLAGS) $(LDFLAGS) 
 
 
