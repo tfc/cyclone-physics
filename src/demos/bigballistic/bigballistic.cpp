@@ -96,6 +96,9 @@ public:
             body->setDamping(0.99f, 0.8f);
             radius = 0.2f;
             break;
+	case UNUSED:
+	default:
+	    break;
         }
 
         body->setCanSleep(false);

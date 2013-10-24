@@ -245,6 +245,9 @@ void BallisticDemo::display()
     case ARTILLERY: renderText(10.0f, 10.0f, "Current Ammo: Artillery"); break;
     case FIREBALL: renderText(10.0f, 10.0f, "Current Ammo: Fireball"); break;
     case LASER: renderText(10.0f, 10.0f, "Current Ammo: Laser"); break;
+    case UNUSED:
+    default:
+	break;
     }
 }
 
